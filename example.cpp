@@ -4,9 +4,15 @@
 
 void draw()
 {
-    constexpr GLfloat clear_color[4]={0,0,0,1};
+    constexpr GLfloat clear_color[4]=
+    {
+        77.f/255.f,
+        78.f/255.f,
+        83.f/255.f,
+        1.f
+    };
 
-    glClearBufferfv(GL_COLOR,0,clear_color);
+    glClearBufferfv(GL_COLOR,0,clear_color);        // Minimum requirement OpenGL 3.0
 }
 
 void output_ogl_info()
@@ -59,14 +65,16 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
+//--------------------------------------------------------------------------------------------------
     glewInit();
+//--------------------------------------------------------------------------------------------------
+
     output_ogl_info();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+        draw();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -75,7 +83,10 @@ int main(void)
         glfwPollEvents();
     }
 
+//--------------------------------------------------------------------------------------------------
     glewTerminate();        // Added GLEWCore API, which will cause memory leaks when not used
+//--------------------------------------------------------------------------------------------------
+
     glfwTerminate();
     return 0;
 }
