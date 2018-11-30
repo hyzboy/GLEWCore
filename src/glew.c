@@ -22839,6 +22839,9 @@ void InitOpenGLCoreExtensions()
 
     glGetIntegerv(GL_NUM_EXTENSIONS, &opengl_core_ext_number);
 
+    if(opengl_core_ext_string)
+        free(opengl_core_ext_string);
+
     opengl_core_ext_string = malloc(opengl_core_ext_number*sizeof(char *));
 
     for (i = 0; i < opengl_core_ext_number; i++)
