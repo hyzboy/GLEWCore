@@ -6,5 +6,8 @@ add_library(GLEWCore src/glew.c)
 
 add_executable(GLEWCoreExample example.cpp src/glew.c)
 
-target_link_libraries(GLEWCoreExample GL glfw)
-
+IF(WIN32)
+	target_link_libraries(GLEWCoreExample opengl32 glfw)
+ELSE()
+	target_link_libraries(GLEWCoreExample GL glfw)
+ENDIF()
